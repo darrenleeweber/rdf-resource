@@ -9,6 +9,9 @@
 /test/version_tmp/
 /tmp/
 
+## Specific to SublimeText
+*.sublime*
+
 ## Specific to dotenv:
 .env
 
