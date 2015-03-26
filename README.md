@@ -6,4 +6,4 @@ A utility for working with RDF resources and vocabularies
 It uses RDF.rb and several RDF::Vocab, with options for
 caching RDF resources.
 
-See lib/rdf-resource/resource.rb for details
+See https://github.com/sul-dlss/rdf-resource/blob/master/lib/rdf-resource/resource.rb
