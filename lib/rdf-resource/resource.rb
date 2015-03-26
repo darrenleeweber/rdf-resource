@@ -56,13 +56,13 @@ module RDFResource
       rdf.insert(s)
     end
 
+    # Retrieve RDF graph from iri; the results may be cached when
+    # the RDF::Graph.load method uses RestClient and it is configured
+    # to cache results.
     # This method is often overloaded in subclasses because
-    # RDF services use variations in the URL 'extension' patterns; e.g.
-    # see Loc#rdf and Viaf#rdf
+    # RDF services use variations in the URL 'extension' patterns.
+    # @return [RDF::Graph|nil] an RDF graph
     def rdf
-      # TODO: try to retrieve the rdf from a local triple store
-      # TODO: if local triple store fails, try remote source(s)
-      # TODO: if retrieved from a remote source, save the rdf to a local triple store
       return @rdf unless @rdf.nil?
       uri4rdf = @iri.to_s
       tries = 0
