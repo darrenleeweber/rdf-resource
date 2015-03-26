@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.email       = ['darren.weber@stanford.edu']
 
   s.homepage    = 'https://github.com/sul-dlss/rdf-resource'
-  s.summary     = 'A general purpose utility for working with RDF resources'
-  s.description = 'A general purpose utility for working with RDF resources'
+  s.summary     = 'A utility for working with RDF resources and vocabularies.'
+  s.description = 'It uses RDF.rb and several RDF::Vocab, with options for caching RDF resources.'
 
   s.required_rubygems_version = '>= 1.3.6'
 
