@@ -209,7 +209,7 @@ module RDFResource
     # HTTP methods
 
     # @param url [String|URI] A URL that can be resolved via HTTP request
-    # @return [RDF::Graph] graph of recursive resolution for a blank node
+    # @return [String|nil] the URL, after resolving redirections
     def resolve_url(url)
       begin
         # RestClient does all the response code handling and redirection.
