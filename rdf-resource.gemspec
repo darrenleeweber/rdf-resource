@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name        = 'rdf-resource'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.licenses    = ['Apache-2.0']
   s.platform    = Gem::Platform::RUBY
 
