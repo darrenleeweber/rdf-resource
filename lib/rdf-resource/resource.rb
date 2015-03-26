@@ -11,12 +11,12 @@ module RDFResource
         response = RestClient.head(url)
         uri = response.args[:url]
       rescue
-        @configuration.logger.error "RestClient.head failed for #{url}"
+        @@config.logger.error "RestClient.head failed for #{url}"
         begin
           response = RestClient.get(url)
           uri = response.args[:url]
         rescue
-          @configuration.logger.error "RestClient.get failed for #{url}"
+          @@config.logger.error "RestClient.get failed for #{url}"
         end
       end
       uri
