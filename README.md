@@ -1,2 +1,2 @@
 # rdf-resource
-A general purpose utility for working with RDF resources
+A utility for working with RDF resources and vocabularies
