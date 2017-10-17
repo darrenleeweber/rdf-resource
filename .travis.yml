@@ -1,12 +1,26 @@
-language: ruby
-
-install: ./bin/setup.sh
-
-script: ./bin/test.sh
-
 notifications:
   email: false
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=322ddc2ffacd901c898f5ec325cada43840cd76c2204b09c31d0ba2599947a1e
+
+language: ruby
+
 rvm:
-  - 2.4.1
+ - 2.4
+
+install: ./bin/setup.sh
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
+script: ./bin/test.sh
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+sudo: false
 
