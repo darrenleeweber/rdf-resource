@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'addressable', '~> 2.3'
   s.add_dependency 'linkeddata', '~> 1.0'
   s.add_dependency 'rdf-iiif'
-  s.add_dependency 'rdf-vocab', '~> 0.8'
+  s.add_dependency 'rdf-vocab', '>= 0.8', '< 3.0'
   # HTTP client and rack cache components
   s.add_dependency 'rest-client', '~> 1.0'
   s.add_dependency 'rest-client-components', '~> 1.0'
