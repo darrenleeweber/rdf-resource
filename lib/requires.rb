@@ -32,8 +32,7 @@ require 'json'
 require 'uuid'
 
 require 'linkeddata'
-require 'rdf/iiif'
-require 'rdf-vocab'
+require 'rdf/vocab'
 require_relative 'rdf/vocab/Content.rb'
 require_relative 'rdf/vocab/sc.rb'
 
