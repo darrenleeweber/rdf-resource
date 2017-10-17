@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'dotenv'
   # RDF linked data
   s.add_dependency 'addressable', '~> 2.3'
-  s.add_dependency 'linkeddata', '~> 1.0'
+  s.add_dependency 'linkeddata', '>= 1', '< 3'
   s.add_dependency 'rdf-iiif'
   s.add_dependency 'rdf-vocab', '~> 0.8'
   # HTTP client and rack cache components
