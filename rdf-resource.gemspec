@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
 
   s.authors     = ['Darren Weber',]
-  s.email       = ['darren.weber@stanford.edu']
+  s.email       = ['dweber.consulting@gmail.com']
 
-  s.homepage    = 'https://github.com/sul-dlss/rdf-resource'
+  s.homepage    = 'https://github.com/darrenleeweber/rdf-resource'
   s.summary     = 'A utility for working with RDF resources and vocabularies.'
   s.description = 'It uses RDF.rb and several RDF::Vocab, with options for caching RDF resources.'
 

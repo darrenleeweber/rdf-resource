@@ -2,7 +2,7 @@ require 'requires'
 
 module RDFResource
 
-  AGENT = RDF::URI.parse('https://github.com/sul-dlss/rdf-resource')
+  AGENT = RDF::URI.parse('https://rubygems.org/gems/rdf-resource')
 
   # configuration at the module level, see
   # http://brandonhilkert.com/blog/ruby-gem-configuration-patterns/
