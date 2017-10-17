@@ -37,7 +37,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'pry'
   s.add_dependency 'pry-doc'
 
-  s.add_development_dependency 'coveralls'
   s.add_development_dependency 'guard'
   s.add_development_dependency 'guard-ctags-bundler'
   s.add_development_dependency 'rake'
