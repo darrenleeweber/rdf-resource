@@ -1,8 +1,6 @@
 
 module RDFResource
-
   class Resource
-
     @@config = nil
 
     def self.http_head_request(url)
@@ -22,14 +20,17 @@ module RDFResource
       uri
     end
 
-
     attr_accessor :iri
 
-    def initialize(uri=nil)
+    def initialize(uri = nil)
       @@agent ||= RDFResource::AGENT
       @@config ||= RDFResource.configuration
-      if uri =~ /\A#{URI::regexp}\z/
-        uri = Addressable::URI.parse(uri.to_s) rescue nil
+      if uri =~ /\A#{URI::DEFAULT_PARSER.make_regexp}\z/
+        uri = begin
+                Addressable::URI.parse(uri.to_s)
+              rescue
+                nil
+              end
       end
       raise 'invalid uri' unless uri.instance_of? Addressable::URI
       @iri = uri
@@ -45,7 +46,7 @@ module RDFResource
 
     def iri_types
       q = [rdf_uri, RDF.type, :o]
-      rdf.query(q).collect {|s| s.object }
+      rdf.query(q).collect(&:object)
     end
 
     # Assert PROV.SoftwareAgent and PROV.generatedAtTime
@@ -70,7 +71,7 @@ module RDFResource
         tries += 1
         @rdf = RDF::Graph.load(uri4rdf)
       rescue
-        sleep 1*tries
+        sleep 1 * tries
         retry if tries < 3
         binding.pry if @@config.debug
         @@config.logger.error("Failed to retrieve RDF for #{uri4rdf}")
@@ -83,7 +84,7 @@ module RDFResource
     # @return [Array] The objects of predicate, the ?o in ?s ?p ?o
     def query_predicate_objects(predicate)
       q = [:s, predicate, :o]
-      rdf.query(q).collect {|s| s.object }
+      rdf.query(q).collect(&:object)
     end
 
     # RDF query to find all subjects with a predicate
@@ -91,7 +92,7 @@ module RDFResource
     # @return [Array] The subjects with predicate, the ?s in ?s ?p ?o
     def query_predicate_subjects(predicate)
       q = [:s, predicate, :o]
-      rdf.query(q).collect {|s| s.subject }
+      rdf.query(q).collect(&:subject)
     end
 
     # Regexp search to find an object matching a string, if it belongs to @iri
@@ -123,8 +124,8 @@ module RDFResource
     def rdf_expand_blank_nodes(object)
       g = RDF::Graph.new
       if object.node?
-        rdf.query([object, nil, nil]) do |s,p,o|
-          g << [s,p,o]
+        rdf.query([object, nil, nil]) do |s, p, o|
+          g << [s, p, o]
           g << rdf_expand_blank_nodes(o) if o.node?
         end
       end
@@ -137,36 +138,44 @@ module RDFResource
     def rdf_insert(uriS, uriP, uriO)
       @rdf.insert RDF::Statement(uriS, uriP, uriO)
     end
+
     def rdf_insert_sameAs(uriS, uriO)
       rdf_insert(uriS, RDF::OWL.sameAs, uriO)
     end
+
     def rdf_insert_seeAlso(uriS, uriO)
       rdf_insert(uriS, RDF::RDFS.seeAlso, uriO)
     end
+
     def rdf_insert_creator(uriS, uriO)
       rdf_insert(uriS, RDF::SCHEMA.creator, uriO)
     end
+
     def rdf_insert_contributor(uriS, uriO)
       rdf_insert(uriS, RDF::SCHEMA.contributor, uriO)
     end
+
     def rdf_insert_editor(uriS, uriO)
       rdf_insert(uriS, RDF::SCHEMA.editor, uriO)
     end
+
     def rdf_insert_exampleOfWork(uriS, uriO)
       rdf_insert(uriS, RDF::SCHEMA.exampleOfWork, uriO)
     end
+
     def rdf_insert_foafFocus(uriS, uriO)
       # http://xmlns.com/foaf/spec/#term_focus
       # relates SKOS:Concept to a 'real world thing'
       rdf_insert(uriS, RDF::FOAF.focus, uriO)
     end
+
     def rdf_insert_name(uriS, name)
       rdf_insert(uriS, RDF::FOAF.name, name) if @@config.use_foaf
       rdf_insert(uriS, RDF::SCHEMA.name, name) if @@config.use_schema
     end
 
     def rdf_now
-      RDF::Literal.new(Time.now.utc, :datatype => RDF::XSD.dateTime)
+      RDF::Literal.new(Time.now.utc, datatype: RDF::XSD.dateTime)
     end
 
     def rdf_uri
@@ -200,10 +209,8 @@ module RDFResource
     end
 
     def rdf_valid?
-      iri_types.length > 0
+      !iri_types.empty?
     end
-
-
 
     # ---
     # HTTP methods
@@ -232,20 +239,19 @@ module RDFResource
       same_as_url = 'http://sameas.org/rdf?uri=' + URI.encode(@iri.to_s)
       @same_as_org_graph = RDF::Graph.load(same_as_url)
     end
+
     def same_as_org_query
       # q = SPARQL.parse("SELECT * WHERE { <#{@iri}> <http://www.w3.org/2002/07/owl#sameAs> ?o }")
       q = [rdf_uri, RDF::OWL.sameAs, nil]
-      same_as_org_graph.query(q).collect {|s| s.object }
+      same_as_org_graph.query(q).collect(&:object)
     end
-
-
 
     # ---
     # Transforms or Serialization
 
     # A json-ld object for the rdf resource
     def as_jsonld
-      JSON::LD::API::fromRdf(rdf)
+      JSON::LD::API.fromRdf(rdf)
     end
 
     # A json-ld serialization of the rdf resource
@@ -257,9 +263,5 @@ module RDFResource
     def to_ttl
       rdf.dump(:ttl, standard_prefixes: true)
     end
-
   end
-
 end
-
-

@@ -1,9 +1,7 @@
-require "spec_helper"
+require 'spec_helper'
 
 module RDFResource
-
   describe Resource do
-
     before :all do
       @auth_id = 'no99010609'
       @auth_url = 'http://id.loc.gov/authorities/names/no99010609'
@@ -16,10 +14,10 @@ module RDFResource
     describe '#initialize' do
       it 'should not raise error for a valid iri' do
         # iri_valid = 'http://id.loc.gov/authorities/names/no99010609'
-        expect{Resource.new @auth_url}.not_to raise_error
+        expect { Resource.new @auth_url }.not_to raise_error
       end
       it 'should raise error for an invalid iri' do
-        expect{Resource.new 'This is not a URL'}.to raise_error(RuntimeError)
+        expect { Resource.new 'This is not a URL' }.to raise_error(RuntimeError)
       end
     end
 
@@ -34,7 +32,7 @@ module RDFResource
         expect(@auth.iri.to_s).to eq(@auth_url)
       end
       it 'should be an instance of Addressable::URI' do
-        expect(@auth.iri.instance_of? Addressable::URI).to be_truthy
+        expect(@auth.iri.instance_of?(Addressable::URI)).to be_truthy
       end
     end
 
@@ -45,9 +43,5 @@ module RDFResource
       @auth_url = nil
       @auth = nil
     end
-
   end
-
 end
-
-

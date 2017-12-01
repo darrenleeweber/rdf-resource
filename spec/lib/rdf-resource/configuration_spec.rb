@@ -1,9 +1,7 @@
-require "spec_helper"
+require 'spec_helper'
 
 module RDFResource
-
   describe Configuration do
-
     describe '#debug' do
       it 'default value is false' do
         ENV['DEBUG'] = nil
@@ -19,6 +17,5 @@ module RDFResource
         expect(config.debug).to be_truthy
       end
     end
-
   end
 end
