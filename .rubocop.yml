@@ -1,0 +1,14 @@
+inherit_from:
+  - .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.2
+  Exclude:
+    - 'Gemfile'
+    - 'bin/**/*'
+    - 'spec/fixtures/**/*'
+    - 'spec/spec_helper.rb'
+    - 'vendor/**/*'
+
+Performance/Casecmp:
+  Enabled: false
