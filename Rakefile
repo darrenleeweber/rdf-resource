@@ -7,20 +7,20 @@ require 'linkeddata'
 require 'rdf/cli/vocab-loader'
 
 desc 'Default: run specs.'
-task :default => :spec
-task :specs => :spec
+task default: :spec
+task specs: :spec
 
 # Derived from https://raw.githubusercontent.com/ruby-rdf/rdf/develop/Rakefile
-desc "Generate Vocabularies"
+desc 'Generate Vocabularies'
 vocab_sources = {
   Content: {
     uri: 'http://www.w3.org/2011/content#',
     source: 'http://www.w3.org/2011/content',
     strict: true
-  },
+  }
 }
 
-task :gen_vocabs => vocab_sources.keys.map {|v| "lib/rdf/vocab/#{v}.rb"}
+task gen_vocabs: vocab_sources.keys.map { |v| "lib/rdf/vocab/#{v}.rb" }
 
 vocab_sources.each do |id, v|
   file "lib/rdf/vocab/#{id}.rb" => :do_build do
@@ -35,9 +35,9 @@ vocab_sources.each do |id, v|
       loader.output = out
       loader.run
       out.rewind
-      File.open("lib/rdf/vocab/#{id}.rb", "w") {|f| f.write out.read}
+      File.open("lib/rdf/vocab/#{id}.rb", 'w') { |f| f.write out.read }
     rescue
-      puts "Failed to load #{id}: #{$!.message}"
+      puts "Failed to load #{id}: #{$ERROR_INFO.message}"
     end
   end
 end

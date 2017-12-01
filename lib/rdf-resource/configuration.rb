@@ -1,8 +1,6 @@
 
 module RDFResource
-
   class Configuration
-
     attr_accessor :debug
 
     attr_accessor :prefixes
@@ -41,7 +39,11 @@ module RDFResource
       log_path = File.dirname log_file
       unless File.directory? log_path
         # try to create the log directory
-        Dir.mkdir log_path rescue nil
+        begin
+          Dir.mkdir log_path
+        rescue
+          nil
+        end
       end
       begin
         log_file = File.new(@log_file, 'w+')
@@ -51,14 +53,14 @@ module RDFResource
       end
       @logger = Logger.new(log_file, 'monthly')
       @logger.level = @debug ? Logger::DEBUG : Logger::INFO
-
     end
 
     def env_boolean(var)
       # check if an ENV variable is true, use false as default
-      ENV[var].to_s.upcase == 'TRUE' rescue false
+
+      ENV[var].to_s.upcase == 'TRUE'
+    rescue
+      false
     end
-
   end
-
 end

@@ -21,10 +21,10 @@ if ENV['RDF_CACHE_ENABLED'].to_s.upcase == 'TRUE'
   entitystore = ENV['RDF_CACHE_ENTITYSTORE'] || 'file:/tmp/cache/rdf_body'
   verbose = ENV['RDF_CACHE_VERBOSE'].to_s.upcase == 'TRUE' || false
   RestClient.enable Rack::Cache,
-    metastore: metastore,
-    entitystore: entitystore,
-    default_ttl: 86400, # when to recheck, in seconds (daily = 60 x 60 x 24)
-    verbose: verbose
+                    metastore: metastore,
+                    entitystore: entitystore,
+                    default_ttl: 86_400, # when to recheck, in seconds (daily = 60 x 60 x 24)
+                    verbose: verbose
 end
 
 require 'addressable/uri'
@@ -38,4 +38,3 @@ require_relative 'rdf/vocab/sc.rb'
 
 require_relative 'rdf-resource/configuration'
 require_relative 'rdf-resource/resource'
-

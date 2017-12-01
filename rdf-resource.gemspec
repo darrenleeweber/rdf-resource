@@ -1,12 +1,10 @@
-# -*- encoding: utf-8 -*-
-
 Gem::Specification.new do |s|
   s.name        = 'rdf-resource'
   s.version     = '0.0.2'
   s.licenses    = ['Apache-2.0']
   s.platform    = Gem::Platform::RUBY
 
-  s.authors     = ['Darren Weber',]
+  s.authors     = ['Darren Weber']
   s.email       = ['dweber.consulting@gmail.com']
 
   s.homepage    = 'https://github.com/darrenleeweber/rdf-resource'
@@ -43,12 +41,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rubocop'
   s.add_development_dependency 'simplecov'
 
-  s.files   = `git ls-files`.split($/)
-  dev_files = %w(.gitignore bin/setup.sh bin/test.sh)
-  dev_files.each {|f| s.files.delete f }
+  s.files   = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
+  dev_files = %w[.gitignore bin/setup.sh bin/test.sh]
+  dev_files.each { |f| s.files.delete f }
 
   s.executables = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files  = s.files.grep(%r{^(test|spec|features)/})
-
 end
-
