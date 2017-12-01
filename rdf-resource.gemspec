@@ -27,7 +27,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'linkeddata', '~> 1.0'
   s.add_dependency 'rdf-vocab', '~> 0.8'
   # HTTP client and rack cache components
-  s.add_dependency 'rest-client', '~> 1.8'
+  s.add_dependency 'rest-client', '>= 1.8', '< 3.0'
   s.add_dependency 'rest-client-components', '~> 1.0'
   s.add_dependency 'rack-cache', '~> 1.2'
   # dalli is a memcached ruby client
