@@ -119,7 +119,7 @@ GEM
       yard (~> 0.9.11)
     public_suffix (3.0.1)
     rack (2.0.5)
-    rack-cache (1.7.2)
+    rack-cache (1.8.0)
       rack (>= 0.4)
     rainbow (3.0.0)
     rake (12.3.1)
