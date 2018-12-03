@@ -114,7 +114,7 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    pry-doc (0.13.4)
+    pry-doc (0.13.5)
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.1)
@@ -234,7 +234,7 @@ GEM
     unicode-display_width (1.4.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
-    yard (0.9.12)
+    yard (0.9.16)
 
 PLATFORMS
   ruby
