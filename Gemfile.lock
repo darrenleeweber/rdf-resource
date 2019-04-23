@@ -60,7 +60,7 @@ GEM
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.1)
-    json (2.1.0)
+    json (2.2.0)
     json-ld (1.99.2)
       multi_json (~> 1.11)
       rdf (~> 1.99)
