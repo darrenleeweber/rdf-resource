@@ -18,8 +18,8 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.0)
     bcp47 (0.3.3)
       i18n
@@ -117,7 +117,7 @@ GEM
     pry-doc (1.0.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
-    public_suffix (3.0.3)
+    public_suffix (4.0.1)
     rack (2.0.8)
     rack-cache (1.9.0)
       rack (>= 0.4)
