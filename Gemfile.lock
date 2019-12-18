@@ -118,7 +118,7 @@ GEM
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (3.0.3)
-    rack (2.0.6)
+    rack (2.0.8)
     rack-cache (1.9.0)
       rack (>= 0.4)
     rainbow (3.0.0)
