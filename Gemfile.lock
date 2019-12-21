@@ -234,7 +234,7 @@ GEM
     unicode-display_width (1.6.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
-    yard (0.9.19)
+    yard (0.9.20)
 
 PLATFORMS
   ruby
