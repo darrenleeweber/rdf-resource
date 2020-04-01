@@ -94,7 +94,7 @@ GEM
     lumberjack (1.0.13)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
-    method_source (0.9.2)
+    method_source (1.0.0)
     mime-types (3.3)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
@@ -111,10 +111,10 @@ GEM
     parallel (1.19.1)
     parser (2.6.5.0)
       ast (~> 2.4.0)
-    pry (0.12.2)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-doc (1.0.0)
+    pry (0.13.0)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    pry-doc (1.1.0)
       pry (~> 0.11)
       yard (~> 0.9.11)
     public_suffix (4.0.1)
@@ -234,7 +234,7 @@ GEM
     unicode-display_width (1.6.0)
     uuid (2.3.9)
       macaddr (~> 1.0)
-    yard (0.9.20)
+    yard (0.9.24)
 
 PLATFORMS
   ruby
